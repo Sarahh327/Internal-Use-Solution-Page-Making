@@ -6,14 +6,281 @@
     "heading": "用自然语言构建设备管理应用",
     "intro": "说明设备、记录、岗位与维护流程。",
     "prompt": "为本厂构建设备管理应用，关联设备档案、巡检和维修工单。主管审批派工，维修人员记录结果，仓库登记备件领用。按车间和设备查待办，完成后确认并保留维护历史。",
-    "image": {
-      "path": "assets/dashboard.png",
-      "alt": "EAM 应用效果：设备状态与维护任务",
-      "width": 1524,
-      "height": 827,
-      "language": "zh-CN",
-      "kind": "original"
-    }
+    "preview": {
+      "title": "设备维护管理",
+      "workspace": "北区工厂",
+      "as_of": "2026-09-20",
+      "people": [
+        "张伟",
+        "陈琳",
+        "李明"
+      ],
+      "records": [
+        {
+          "id": "WO-2401",
+          "title": "检查循环泵机械密封",
+          "asset": "P-103",
+          "asset_name": "循环泵",
+          "location": "A 车间",
+          "priority": "urgent",
+          "status": "in_progress",
+          "owner": "张伟",
+          "due": "2026-09-20",
+          "completed_on": null,
+          "checks": [
+            {
+              "label": "确认隔离与作业条件",
+              "checked": false
+            },
+            {
+              "label": "检查异常部位并记录处理结果",
+              "checked": false
+            },
+            {
+              "label": "恢复设备并核查运行情况",
+              "checked": false
+            }
+          ],
+          "note": "",
+          "history": [
+            "2026-09-20 · 巡检发现异常并登记"
+          ]
+        },
+        {
+          "id": "WO-2402",
+          "title": "更换输送机轴承",
+          "asset": "CV-201",
+          "asset_name": "输送机",
+          "location": "A 车间",
+          "priority": "normal",
+          "status": "pending",
+          "owner": "陈琳",
+          "due": "2026-09-21",
+          "completed_on": null,
+          "checks": [
+            {
+              "label": "确认隔离与作业条件",
+              "checked": false
+            },
+            {
+              "label": "检查异常部位并记录处理结果",
+              "checked": false
+            },
+            {
+              "label": "恢复设备并核查运行情况",
+              "checked": false
+            }
+          ],
+          "note": "",
+          "history": [
+            "2026-09-20 · 巡检发现异常并登记"
+          ]
+        },
+        {
+          "id": "WO-2403",
+          "title": "排查空压机排气温度",
+          "asset": "AC-02",
+          "asset_name": "螺杆空压机",
+          "location": "公辅区",
+          "priority": "urgent",
+          "status": "pending",
+          "owner": "",
+          "due": "2026-09-20",
+          "completed_on": null,
+          "checks": [
+            {
+              "label": "确认隔离与作业条件",
+              "checked": false
+            },
+            {
+              "label": "检查异常部位并记录处理结果",
+              "checked": false
+            },
+            {
+              "label": "恢复设备并核查运行情况",
+              "checked": false
+            }
+          ],
+          "note": "",
+          "history": [
+            "2026-09-20 · 巡检发现异常并登记"
+          ]
+        },
+        {
+          "id": "WO-2404",
+          "title": "校验电机振动探头",
+          "asset": "M-08",
+          "asset_name": "搅拌电机",
+          "location": "A 车间",
+          "priority": "normal",
+          "status": "in_progress",
+          "owner": "李明",
+          "due": "2026-09-22",
+          "completed_on": null,
+          "checks": [
+            {
+              "label": "确认隔离与作业条件",
+              "checked": false
+            },
+            {
+              "label": "检查异常部位并记录处理结果",
+              "checked": false
+            },
+            {
+              "label": "恢复设备并核查运行情况",
+              "checked": false
+            }
+          ],
+          "note": "",
+          "history": [
+            "2026-09-20 · 巡检发现异常并登记"
+          ]
+        },
+        {
+          "id": "WO-2397",
+          "title": "清洁包装线光电开关",
+          "asset": "PK-01",
+          "asset_name": "包装线",
+          "location": "A 车间",
+          "priority": "normal",
+          "status": "completed",
+          "owner": "张伟",
+          "due": "2026-09-17",
+          "completed_on": "2026-09-17",
+          "checks": [
+            {
+              "label": "确认隔离与作业条件",
+              "checked": true
+            },
+            {
+              "label": "检查异常部位并记录处理结果",
+              "checked": true
+            },
+            {
+              "label": "恢复设备并核查运行情况",
+              "checked": true
+            }
+          ],
+          "note": "已检查并确认恢复正常运行。",
+          "history": [
+            "2026-09-17 · 作业复核完成"
+          ]
+        },
+        {
+          "id": "WO-2398",
+          "title": "清洗冷却塔过滤器",
+          "asset": "CT-01",
+          "asset_name": "冷却塔",
+          "location": "公辅区",
+          "priority": "normal",
+          "status": "completed",
+          "owner": "陈琳",
+          "due": "2026-09-18",
+          "completed_on": "2026-09-18",
+          "checks": [
+            {
+              "label": "确认隔离与作业条件",
+              "checked": true
+            },
+            {
+              "label": "检查异常部位并记录处理结果",
+              "checked": true
+            },
+            {
+              "label": "恢复设备并核查运行情况",
+              "checked": true
+            }
+          ],
+          "note": "已检查并确认恢复正常运行。",
+          "history": [
+            "2026-09-18 · 作业复核完成"
+          ]
+        },
+        {
+          "id": "WO-2399",
+          "title": "调整输送带张紧度",
+          "asset": "CV-201",
+          "asset_name": "输送机",
+          "location": "A 车间",
+          "priority": "normal",
+          "status": "completed",
+          "owner": "李明",
+          "due": "2026-09-19",
+          "completed_on": "2026-09-19",
+          "checks": [
+            {
+              "label": "确认隔离与作业条件",
+              "checked": true
+            },
+            {
+              "label": "检查异常部位并记录处理结果",
+              "checked": true
+            },
+            {
+              "label": "恢复设备并核查运行情况",
+              "checked": true
+            }
+          ],
+          "note": "已检查并确认恢复正常运行。",
+          "history": [
+            "2026-09-19 · 作业复核完成"
+          ]
+        },
+        {
+          "id": "WO-2400",
+          "title": "检查空压机油位",
+          "asset": "AC-02",
+          "asset_name": "螺杆空压机",
+          "location": "公辅区",
+          "priority": "normal",
+          "status": "completed",
+          "owner": "张伟",
+          "due": "2026-09-20",
+          "completed_on": "2026-09-20",
+          "checks": [
+            {
+              "label": "确认隔离与作业条件",
+              "checked": true
+            },
+            {
+              "label": "检查异常部位并记录处理结果",
+              "checked": true
+            },
+            {
+              "label": "恢复设备并核查运行情况",
+              "checked": true
+            }
+          ],
+          "note": "已检查并确认恢复正常运行。",
+          "history": [
+            "2026-09-20 · 作业复核完成"
+          ]
+        }
+      ]
+    },
+    "changes": [
+      {
+        "id": "board",
+        "title": "增加状态看板",
+        "prompt": "增加一个按状态分栏的工单看板，每列优先显示紧急任务。",
+        "before": "三个应用视图，工单以表格呈现。",
+        "after": "新增状态看板，用三列展示同一组工单，卡片可打开详情并处理。"
+      },
+      {
+        "id": "priority",
+        "title": "突出紧急工单",
+        "prompt": "在工单列表中显示优先级，并把未完成的紧急工单排在前面。",
+        "before": "工单列表有五列，按截止日期排序。",
+        "after": "新增优先级列，紧急未完成工单优先排列，原有筛选仍可使用。"
+      },
+      {
+        "id": "downtime",
+        "title": "增加完工规则",
+        "prompt": "紧急工单完工时，必须填写停机时长，按整数分钟记录。",
+        "before": "完工需有负责人、全部检查项和处理记录。",
+        "after": "紧急工单新增必填的停机时长，空值、负数或小数会阻止完工，填写后计入活动记录。"
+      }
+    ]
   },
   "agent": {
     "heading": "按设备查询维护待办",
@@ -23,21 +290,29 @@
     "answer": "以下示例按紧急优先级筛选未完成工单，列出设备与负责人。",
     "sources": [
       {
-        "path": "v1/Factory_A/Workshop_A/State/work_orders",
+        "path": "v1/Factory_A/State/work_orders",
         "fields": [
           "work_order_id",
           "equipment_id",
           "status",
           "priority",
-          "assignee"
+          "assignee",
+          "workshop"
+        ]
+      },
+      {
+        "path": "v1/Factory_A/State/equipment_status",
+        "fields": [
+          "equipment_id",
+          "state"
         ]
       }
     ],
     "field_refs": [
-      "v1/Factory_A/Workshop_A/State/work_orders#status",
-      "v1/Factory_A/Workshop_A/State/work_orders#priority",
-      "v1/Factory_A/Workshop_A/State/work_orders#equipment_id",
-      "v1/Factory_A/Workshop_A/State/work_orders#assignee"
+      "v1/Factory_A/State/work_orders#status",
+      "v1/Factory_A/State/work_orders#priority",
+      "v1/Factory_A/State/work_orders#equipment_id",
+      "v1/Factory_A/State/work_orders#assignee"
     ],
     "data_status": "illustrative",
     "result": {
@@ -51,17 +326,66 @@
       "rows": [
         [
           "P-103",
-          "已指派",
+          "处理中",
           "张伟"
+        ],
+        [
+          "AC-02",
+          "待执行",
+          "未分派"
         ]
       ]
     },
-    "followup": "按车间汇总未完成工单。"
+    "followup": "按车间汇总未完成工单。",
+    "examples": [
+      {
+        "question": "按车间汇总未完成工单。",
+        "answer": "示例共有 4 条未完成工单：A 车间 3 条，公辅区 1 条。",
+        "field_refs": [
+          "v1/Factory_A/State/work_orders#status",
+          "v1/Factory_A/State/work_orders#workshop"
+        ],
+        "result": {
+          "type": "table",
+          "title": "各车间未完成工单",
+          "columns": [
+            "车间",
+            "未完成工单"
+          ],
+          "rows": [
+            [
+              "A 车间",
+              "3"
+            ],
+            [
+              "公辅区",
+              "1"
+            ]
+          ]
+        }
+      }
+    ]
   },
   "delivery": {
     "scope": "先验证一个车间，再扩展到更多设备和维护场景。",
     "organize": "自主组织设备档案、测点与维护记录",
     "integration": "梳理设备、系统接口和 UNS 模型",
     "customize": "定制巡检规则、应用页面与维护流程"
+  },
+  "namespace": {
+    "heading": "按业务对象组织现场记录",
+    "intro": "关联维护记录与设备状态，再进行业务分析。",
+    "sources": [
+      {
+        "label": "维护记录",
+        "method": "维修人员通过应用表单录入工单结果。",
+        "topic": "v1/Factory_A/State/work_orders"
+      },
+      {
+        "label": "设备状态",
+        "method": "通过设备可用的 OPC UA 接口读取运行状态。",
+        "topic": "v1/Factory_A/State/equipment_status"
+      }
+    ]
   }
 }

@@ -1,4 +1,4 @@
 interface:
   display_name: "Tier0 解决方案内容"
-  short_description: "按统一叙事框架，基于产品资料与截图制作不同软件的解决方案系列文章"
-  default_prompt: "使用 $tier0-solution-content，基于我的产品资料与截图，按系列文章框架制作当前软件的 Tier0 解决方案内容，突出具体业务流程，并提供对应语言的 SEO 配置；如需页面设计，沿用官方导航页脚。"
+  short_description: "按统一叙事框架，基于产品资料与截图制作解决方案系列文章与可点击产品演示"
+  default_prompt: "使用 $tier0-solution-content，基于我的产品资料与截图，按系列文章框架制作当前软件的 Tier0 解决方案内容，突出具体业务流程，所有示意图和演示截图使用可点击的本地数据界面模型，参考 Hex 与 shadcn 制作丰富真实的 App，验证关联视图、业务操作、键盘和移动端，并提供对应语言的 SEO 配置；如需页面设计，沿用官方导航页脚。"

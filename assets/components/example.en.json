@@ -6,15 +6,281 @@
     "heading": "Build your maintenance application",
     "intro": "Describe assets, records, roles and maintenance workflows.",
     "prompt": "Build an equipment management app linking asset records, inspections and work orders. Managers assign work, technicians record results, and warehouse staff log parts issued. Track open work by workshop and asset, and retain confirmed maintenance history.",
-    "image": {
-      "path": "assets/dashboard.en.png",
-      "alt": "EAM application showing asset status and maintenance work",
-      "width": 1702,
-      "height": 924,
-      "language": "en",
-      "kind": "localized",
-      "source": "assets/dashboard.png"
-    }
+    "preview": {
+      "title": "Maintenance Operations",
+      "workspace": "North Plant",
+      "as_of": "2026-09-20",
+      "people": [
+        "Zhang Wei",
+        "Chen Lin",
+        "Li Ming"
+      ],
+      "records": [
+        {
+          "id": "WO-2401",
+          "title": "Inspect circulation pump seal",
+          "asset": "P-103",
+          "asset_name": "Circulation pump",
+          "location": "Workshop A",
+          "priority": "urgent",
+          "status": "in_progress",
+          "owner": "Zhang Wei",
+          "due": "2026-09-20",
+          "completed_on": null,
+          "checks": [
+            {
+              "label": "Confirm isolation and work conditions",
+              "checked": false
+            },
+            {
+              "label": "Inspect the affected part and record findings",
+              "checked": false
+            },
+            {
+              "label": "Restore equipment and verify operation",
+              "checked": false
+            }
+          ],
+          "note": "",
+          "history": [
+            "2026-09-20 · Inspection issue recorded"
+          ]
+        },
+        {
+          "id": "WO-2402",
+          "title": "Replace conveyor bearing",
+          "asset": "CV-201",
+          "asset_name": "Conveyor",
+          "location": "Workshop A",
+          "priority": "normal",
+          "status": "pending",
+          "owner": "Chen Lin",
+          "due": "2026-09-21",
+          "completed_on": null,
+          "checks": [
+            {
+              "label": "Confirm isolation and work conditions",
+              "checked": false
+            },
+            {
+              "label": "Inspect the affected part and record findings",
+              "checked": false
+            },
+            {
+              "label": "Restore equipment and verify operation",
+              "checked": false
+            }
+          ],
+          "note": "",
+          "history": [
+            "2026-09-20 · Inspection issue recorded"
+          ]
+        },
+        {
+          "id": "WO-2403",
+          "title": "Investigate compressor temperature",
+          "asset": "AC-02",
+          "asset_name": "Screw compressor",
+          "location": "Utilities",
+          "priority": "urgent",
+          "status": "pending",
+          "owner": "",
+          "due": "2026-09-20",
+          "completed_on": null,
+          "checks": [
+            {
+              "label": "Confirm isolation and work conditions",
+              "checked": false
+            },
+            {
+              "label": "Inspect the affected part and record findings",
+              "checked": false
+            },
+            {
+              "label": "Restore equipment and verify operation",
+              "checked": false
+            }
+          ],
+          "note": "",
+          "history": [
+            "2026-09-20 · Inspection issue recorded"
+          ]
+        },
+        {
+          "id": "WO-2404",
+          "title": "Calibrate motor vibration sensor",
+          "asset": "M-08",
+          "asset_name": "Agitator motor",
+          "location": "Workshop A",
+          "priority": "normal",
+          "status": "in_progress",
+          "owner": "Li Ming",
+          "due": "2026-09-22",
+          "completed_on": null,
+          "checks": [
+            {
+              "label": "Confirm isolation and work conditions",
+              "checked": false
+            },
+            {
+              "label": "Inspect the affected part and record findings",
+              "checked": false
+            },
+            {
+              "label": "Restore equipment and verify operation",
+              "checked": false
+            }
+          ],
+          "note": "",
+          "history": [
+            "2026-09-20 · Inspection issue recorded"
+          ]
+        },
+        {
+          "id": "WO-2397",
+          "title": "Clean packaging line sensor",
+          "asset": "PK-01",
+          "asset_name": "Packaging line",
+          "location": "Workshop A",
+          "priority": "normal",
+          "status": "completed",
+          "owner": "Zhang Wei",
+          "due": "2026-09-17",
+          "completed_on": "2026-09-17",
+          "checks": [
+            {
+              "label": "Confirm isolation and work conditions",
+              "checked": true
+            },
+            {
+              "label": "Inspect the affected part and record findings",
+              "checked": true
+            },
+            {
+              "label": "Restore equipment and verify operation",
+              "checked": true
+            }
+          ],
+          "note": "Inspected and verified normal operation.",
+          "history": [
+            "2026-09-17 · Work verified and completed"
+          ]
+        },
+        {
+          "id": "WO-2398",
+          "title": "Clean cooling tower filter",
+          "asset": "CT-01",
+          "asset_name": "Cooling tower",
+          "location": "Utilities",
+          "priority": "normal",
+          "status": "completed",
+          "owner": "Chen Lin",
+          "due": "2026-09-18",
+          "completed_on": "2026-09-18",
+          "checks": [
+            {
+              "label": "Confirm isolation and work conditions",
+              "checked": true
+            },
+            {
+              "label": "Inspect the affected part and record findings",
+              "checked": true
+            },
+            {
+              "label": "Restore equipment and verify operation",
+              "checked": true
+            }
+          ],
+          "note": "Inspected and verified normal operation.",
+          "history": [
+            "2026-09-18 · Work verified and completed"
+          ]
+        },
+        {
+          "id": "WO-2399",
+          "title": "Adjust conveyor belt tension",
+          "asset": "CV-201",
+          "asset_name": "Conveyor",
+          "location": "Workshop A",
+          "priority": "normal",
+          "status": "completed",
+          "owner": "Li Ming",
+          "due": "2026-09-19",
+          "completed_on": "2026-09-19",
+          "checks": [
+            {
+              "label": "Confirm isolation and work conditions",
+              "checked": true
+            },
+            {
+              "label": "Inspect the affected part and record findings",
+              "checked": true
+            },
+            {
+              "label": "Restore equipment and verify operation",
+              "checked": true
+            }
+          ],
+          "note": "Inspected and verified normal operation.",
+          "history": [
+            "2026-09-19 · Work verified and completed"
+          ]
+        },
+        {
+          "id": "WO-2400",
+          "title": "Check compressor oil level",
+          "asset": "AC-02",
+          "asset_name": "Screw compressor",
+          "location": "Utilities",
+          "priority": "normal",
+          "status": "completed",
+          "owner": "Zhang Wei",
+          "due": "2026-09-20",
+          "completed_on": "2026-09-20",
+          "checks": [
+            {
+              "label": "Confirm isolation and work conditions",
+              "checked": true
+            },
+            {
+              "label": "Inspect the affected part and record findings",
+              "checked": true
+            },
+            {
+              "label": "Restore equipment and verify operation",
+              "checked": true
+            }
+          ],
+          "note": "Inspected and verified normal operation.",
+          "history": [
+            "2026-09-20 · Work verified and completed"
+          ]
+        }
+      ]
+    },
+    "changes": [
+      {
+        "id": "board",
+        "title": "Add a status board",
+        "prompt": "Add a work-order board grouped by status, with urgent work first.",
+        "before": "Three application views, with work orders shown as a table.",
+        "after": "A new Status board view groups the same work orders into three columns. Cards open their actual work details."
+      },
+      {
+        "id": "priority",
+        "title": "Show urgent work first",
+        "prompt": "Show priority in the work-order list and put unfinished urgent work first.",
+        "before": "Five table columns, ordered by due date.",
+        "after": "A Priority column is added. Unfinished urgent work is listed first, while the existing filters still work."
+      },
+      {
+        "id": "downtime",
+        "title": "Require downtime on completion",
+        "prompt": "Require downtime in whole minutes before completing an urgent work order.",
+        "before": "Completion requires an owner, a finished checklist and a completion note.",
+        "after": "Urgent work gains a required Downtime field. Empty, negative or fractional minutes block completion; valid minutes are recorded in the activity."
+      }
+    ]
   },
   "agent": {
     "heading": "Find open maintenance work",
@@ -24,21 +290,29 @@
     "answer": "This example filters unfinished urgent work and lists the asset and owner.",
     "sources": [
       {
-        "path": "v1/Factory_A/Workshop_A/State/work_orders",
+        "path": "v1/Factory_A/State/work_orders",
         "fields": [
           "work_order_id",
           "equipment_id",
           "status",
           "priority",
-          "assignee"
+          "assignee",
+          "workshop"
+        ]
+      },
+      {
+        "path": "v1/Factory_A/State/equipment_status",
+        "fields": [
+          "equipment_id",
+          "state"
         ]
       }
     ],
     "field_refs": [
-      "v1/Factory_A/Workshop_A/State/work_orders#status",
-      "v1/Factory_A/Workshop_A/State/work_orders#priority",
-      "v1/Factory_A/Workshop_A/State/work_orders#equipment_id",
-      "v1/Factory_A/Workshop_A/State/work_orders#assignee"
+      "v1/Factory_A/State/work_orders#status",
+      "v1/Factory_A/State/work_orders#priority",
+      "v1/Factory_A/State/work_orders#equipment_id",
+      "v1/Factory_A/State/work_orders#assignee"
     ],
     "data_status": "illustrative",
     "result": {
@@ -52,17 +326,66 @@
       "rows": [
         [
           "P-103",
-          "Assigned",
+          "In progress",
           "Zhang Wei"
+        ],
+        [
+          "AC-02",
+          "Queued",
+          "Unassigned"
         ]
       ]
     },
-    "followup": "Group open work orders by workshop."
+    "followup": "Group open work orders by workshop.",
+    "examples": [
+      {
+        "question": "Group open work orders by workshop.",
+        "answer": "Four unfinished orders remain: three in Workshop A and one in Utilities.",
+        "field_refs": [
+          "v1/Factory_A/State/work_orders#status",
+          "v1/Factory_A/State/work_orders#workshop"
+        ],
+        "result": {
+          "type": "table",
+          "title": "Open work by workshop",
+          "columns": [
+            "Workshop",
+            "Open orders"
+          ],
+          "rows": [
+            [
+              "Workshop A",
+              "3"
+            ],
+            [
+              "Utilities",
+              "1"
+            ]
+          ]
+        }
+      }
+    ]
   },
   "delivery": {
     "scope": "Validate one workshop first, then expand to more assets and maintenance workflows.",
     "organize": "Organize asset records, data points and maintenance history",
     "integration": "Define assets, system interfaces and the UNS model",
     "customize": "Customize inspection rules, app pages and maintenance workflows"
+  },
+  "namespace": {
+    "heading": "Connect records to business objects",
+    "intro": "Relate maintenance records and asset status before analysis.",
+    "sources": [
+      {
+        "label": "Maintenance records",
+        "method": "Technicians enter work order results in the app.",
+        "topic": "v1/Factory_A/State/work_orders"
+      },
+      {
+        "label": "Equipment status",
+        "method": "Read equipment state via the available OPC UA interface.",
+        "topic": "v1/Factory_A/State/equipment_status"
+      }
+    ]
   }
 }

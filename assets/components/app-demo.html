@@ -1,0 +1,31 @@
+<div id="$demo_id" class="t0-demo t0-app" data-t0-demo="app" data-visual="interactive">
+  <header class="t0-app-header"><div class="t0-app-identity"><span class="t0-app-mark" aria-hidden="true">▦</span><strong>$title</strong><span class="t0-app-workspace">/ $workspace</span></div><div class="t0-app-header-actions"><span class="t0-local">$local</span><button type="button" disabled data-demo-control data-app-reset>$reset</button></div></header>
+  <div class="t0-app-shell">
+    <nav class="t0-app-nav" aria-label="$navigation">$nav<button type="button" disabled data-demo-control data-app-nav="board" aria-controls="$demo_id-board" aria-pressed="false" hidden><span aria-hidden="true">▥</span>$board</button><div class="t0-nav-foot"><span>$workspace</span><small>$as_of</small></div></nav>
+    <div class="t0-app-main">
+      <div class="t0-app-heading"><div><p class="t0-app-eyebrow">$workspace · $as_of</p><h3 data-app-heading>$overview</h3></div><label class="t0-field">$location<select disabled data-demo-control data-app-location>$locations</select></label></div>
+      <div class="t0-app-metrics">$metrics</div>
+      <div class="t0-app-change" data-app-change hidden><span><strong data-app-version>v1</strong> · <span data-app-change-title></span></span><button type="button" data-app-inspect>$inspect_change ↗</button></div>
+      <section id="$demo_id-overview" data-app-view="overview" aria-label="$overview">
+        <div class="t0-app-charts"><article class="t0-app-card"><div class="t0-card-heading"><h4>$trend_title</h4><span>$seven_days</span></div><div class="t0-week-chart" data-app-trend>$trend</div></article><article class="t0-app-card"><div class="t0-card-heading"><h4>$distribution</h4><span>$records_label</span></div><div class="t0-distribution" data-app-distribution>$bars</div></article></div>
+        <article class="t0-app-card"><div class="t0-card-heading"><h4>$attention</h4><button type="button" disabled data-demo-control data-app-open-orders>$all_orders →</button></div><div data-app-attention>$attention_rows</div></article>
+      </section>
+      <section id="$demo_id-orders" data-app-view="orders" aria-label="$all_orders" hidden>
+        <div class="t0-app-filters"><label class="t0-search">$search<input type="search" disabled data-demo-control data-app-search placeholder="$search_placeholder"></label><label class="t0-field">$status_label<select disabled data-demo-control data-app-status>$statuses</select></label><button type="button" disabled data-demo-control data-app-sort>$sort ↓</button></div>
+        <div class="t0-app-card t0-app-table-wrap"><table class="t0-app-table"><caption>$all_orders</caption><thead><tr>$columns<th scope="col" data-app-priority-heading hidden>$priority_label</th></tr></thead><tbody data-app-rows>$rows</tbody></table><p class="t0-app-empty" data-app-empty hidden>$empty</p></div><p class="t0-app-count" role="status" data-app-count></p>
+      </section>
+      <section id="$demo_id-assets" class="t0-asset-grid" data-app-view="assets" aria-label="$assets" hidden>$asset_cards</section>
+      <section id="$demo_id-board" class="t0-board" data-app-view="board" aria-label="$board" hidden></section>
+      <p class="t0-app-feedback" role="status" data-app-feedback></p>
+    </div>
+  </div>
+  <dialog class="t0-app-drawer" aria-labelledby="$demo_id-detail-title" data-app-drawer>
+    <div class="t0-drawer-top"><span data-detail-id></span><button type="button" data-app-close aria-label="$close">×</button></div>
+    <h3 id="$demo_id-detail-title" data-detail-title></h3><div class="t0-detail-tags" data-detail-tags></div><dl class="t0-detail-meta" data-detail-meta></dl>
+    <div class="t0-assignment"><label class="t0-field" for="$demo_id-owner">$owner_label</label><select id="$demo_id-owner" data-detail-owner>$people</select><button type="button" data-detail-assign>$save_owner</button></div>
+    <form data-detail-form novalidate><fieldset><legend>$checklist</legend><div data-detail-checks></div></fieldset><div class="t0-downtime" data-downtime-field hidden><strong>$new_rule</strong><label class="t0-field" for="$demo_id-downtime">$downtime *</label><input id="$demo_id-downtime" type="number" min="0" step="1" data-detail-downtime aria-describedby="$demo_id-error"></div><label class="t0-field" for="$demo_id-note">$note_label</label><textarea id="$demo_id-note" rows="3" data-detail-note></textarea><p id="$demo_id-error" class="t0-detail-error" role="alert" data-detail-error></p><button type="submit" class="t0-primary" data-detail-complete>$complete</button></form>
+    <div class="t0-history"><h4>$history</h4><ol data-detail-history></ol></div>
+  </dialog>
+  <script type="application/json" data-app-config>$config</script>
+  <noscript><p>$nojs</p></noscript>
+</div>

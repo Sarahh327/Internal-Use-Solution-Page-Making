@@ -1,68 +1,68 @@
-# 固定组件与自动验收
+# 固定组件与验收
 
-用途：将已确认的 Builder、UNS Agent、服务模式稳定复用到方案页。使用标准库 Python 3，无需安装第三方包。这里的脚本不发布页面、不访问网络、不改现有页面。
+制作或修订 HTML 时同时阅读 [交互式界面模型](interactive-demos.md)。生成和静态检查只依赖 Python 3 标准库；交互运行时不依赖第三方库，不访问后端。
 
-## 固定模块与生成范围
+## 四个模块
 
-每页必须有数据采集与 UNS（`#namespace`）、Builder（`#builder`）、UNS Agent（`#uns-agent`）三大业务模块，并保留服务模式（`#delivery`）。数据采集与 UNS 按 [场景规则](data-acquisition.md) 制作；现有生成器只生成下列 Builder、Agent、服务模式片段，不能将生成片段本身视为完整页面。
+每页有数据采集与 UNS（`#namespace`）、Builder（`#builder`）、UNS Agent（`#uns-agent`）和服务模式（`#delivery`）。生成器现提供四个片段；它们不包含网站导航、Hero、其他业务场景或页脚，不能当作完整页面。全页其他示意视觉也需按交互契约实现。
 
-## 生成三个模块
-
-- 模板：[Builder](../assets/components/builder.html)、[Agent](../assets/components/agent.html)。保留 EAM 的底图与右下 Prompt 构图、产品式 Agent 对话层级。
-- 样式与交互：[components.css](../assets/components/components.css)、[components.js](../assets/components/components.js)。样式作用于组件，字体沿用官网 token；复制 Prompt 不执行应用生成，Agent 为不发送请求的展示界面。
-- 服务模式直接从原有 EMS 固定模块生成，只开放原先允许的业务替换项，中文通用文案与按钮不变。英文固定文案由生成器统一维护。
-- 输入示例：[中文](../assets/components/example.zh-CN.json)、[英文](../assets/components/example.en.json)。它们是配置示例，不证明示例 UNS 工单主题已在实际 EAM 中存在。
+- [Namespace](../assets/components/namespace.html)：选择数据来源、展开业务对象与字段；按 [数据接入](data-acquisition.md) 校验业务适用性。
+- [Builder](../assets/components/builder.html) 使用 [完整 App 模型](../assets/components/app-demo.html) 作为底层预览，保留右下 Prompt；需求可预览差异并应用到 App，新增看板、优先级列或完工规则，支持版本同步与撤销。App 的详情、分派、表单校验、指标和图表随实际状态更新。
+- [Agent](../assets/components/agent.html)：预设问答、Source、Chat/Card List、示例卡片和任务，均只操作本页状态。
+- [样式](../assets/components/components.css) 与 [运行时](../assets/components/components.js) 随片段复制；字体与品牌沿用官网 token。服务模式仍从原 EMS 模板生成，不改变固定文字、按钮、链接和布局。
 
 ```sh
 python3 /path/to/skill/scripts/render_components.py config.json --output output/components.html
 ```
 
-把三个 section 合入现有页面的 main，加载生成的两个 CSS 与一个 JS。输出是片段，不是整站；继续使用现有官网导航、页脚、token 和真实品牌资产。图片/Logo 的相对路径以最终页面目录为准，素材由页面制作者提供。已有同名模块先替换，不能叠加重复 ID。生成器默认拒绝覆盖已存在的输出，确认替换时用 `--force`。
+合入当前页面的 main，保留生成片段中的四个 CSS 和三个 JS 引用。已有同名模块先替换，不叠加 ID；相对资源按最终页面目录解析。默认拒绝覆盖，已确认替换时可用 `--force`。最终交付真实可打开的整页，不分享配置模板或这个构建片段。
 
-配置包含：
+## 配置
 
-- `language`（zh-CN / en）、`app`、真实 `logo` 路径。
-- `builder`：heading、intro、prompt；image 的 path、alt、width、height、language、kind。kind 为 localized 时记录原图 source。
-- `agent`：heading、intro、scenario、question、answer、followup；sources 为 UNS 主题及 fields；field_refs 用 `主题路径#字段` 明确本次分析所用字段。生成时检查这些字段已声明，不推断数据内容。
-- `agent.data_status`：illustrative 或 verified；verified 要提供 evidence 来源说明，仍需人工核实。示例会显示“分析示意”。
-- `agent.result`：table（title、columns、rows）或 list（title、items）。表格单元格使用字符串，单位随值写明。趋势等其他表达可沿用已批准的 EAM 产品卡片，用可编辑图表实现并单独验收；不要把需要趋势的问题强行变成列表。
-- `delivery`：scope、organize、integration、customize 四项业务文案；应用名称由 app 填入。不能借此改写通用服务模式。
+以 [中文](../assets/components/example.zh-CN.json) 和 [英文](../assets/components/example.en.json) 为完整配置示例。
 
-输入文本统一转义，资源只接受相对路径或 HTTPS，避免把配置文本当 HTML 执行。语言、数值、数据事实与翻译质量仍由制作者负责。
+- language、app 指定页面语言与应用名称，logo 使用真实品牌资源。
+- `builder.preview` 定义 App 数据与状态，字段见 [配置说明](interactive-demos.md#使用随包实现)。截图只作为视觉或事实参考。
+- `builder.changes` 定义需求及实际界面变更，按 [Builder 联动](interactive-demos.md#builder-与-app-联动) 配置和实现。不能保留只有复制功能的 Builder。
+- `namespace` 定义 heading、intro、sources；来源的 topic 关联 Agent sources，不额外杜撰另一份模型。
+- agent 保留 heading、intro、scenario、question、answer、followup、sources、field_refs、data_status 和 result。`examples` 增加预设问答；每个问题显式声明 field_refs，followup 对应一个已有问题。sources 叶子在 Metric / State / Action 下；未声明字段拒绝生成。
+- result 支持非空 table 或 list；需交互趋势等其他形式时，制作和验证相应组件，不把所有问题强制改为列表。模型中的源、单位、统计范围及演示状态必须一致。
+- data_status 为 illustrative / verified；verified 的 evidence 应支持整组结果，仍由人工核对。界面预设问答不证明真实查询、集成、权限或算法已实现。
+- delivery 只开放 scope、organize、integration、customize 四项业务内容；原 EMS 固定文案和 CTA 保持原有例外。
 
-## 静态验收
+文本统一转义。资源只接受相对路径或 HTTPS，禁止将配置输入当作可执行 HTML/JS。独立/离线交付不引用远程运行时，品牌素材按授权打包。
+
+## 静态检查
 
 ```sh
 python3 /path/to/skill/scripts/check_solution.py index.html en.html --manifest screenshots.json --forbid WMS --output audit.json
 ```
 
-`--forbid` 仅填写当前页面不应出现的旧项目名，例如制作 EAM 时检查误留 WMS；合法业务比较或真实界面名称不要误禁。中文或英文单页可单独运行，缺少语言切换只给提醒。
-
-截图清单结构：
+`--forbid` 只填应清除的旧项目名，避免误禁合法业务比较。单语言页不强制双语链接。保留静态证据时提供图片清单，例如：
 
 ```json
-{"images":[
-  {"path":"assets/dashboard.png","language":"zh-CN","kind":"original"},
-  {"path":"assets/dashboard.en.png","language":"en","kind":"localized","source":"assets/dashboard.png"}
-]}
+{"images":[{"path":"assets/evidence.png","language":"zh-CN","kind":"original"}]}
 ```
 
-图片路径按各页面目录解析，双语页面同目录时可共用清单。所有非 Tier0 品牌图片均需登记；图片内语言只能由清单声明及人工视觉核对，脚本不执行 OCR。独立 HTML 的内嵌图片应在打包前对源页面验收，打包后另查资源内嵌和语言互链。
+localized 证据同时记录原图 source；路径相对最终页面。没有证据图片时无需制造清单，交互模型文字和状态的翻译仍需人工与浏览器检查。
 
-脚本检查：
+检查范围：
 
-- 四个必有区域的存在；数据采集来源与 UNS 模型是否有可读内容；应用效果图和 Prompt、Agent 问答/Source/结果。采集来源标记使用 `data-uns-source`，模型标记使用 `data-uns-model`，兼容现有 EAM 类名；关联是否合理及协议是否适用仍需人工核对。
-- 服务模块两栏各三个列表项、固定按钮与链接。精确样式及所有通用文字的保真依靠生成器和视觉验收，脚本不把结构一致等同像素一致。
-- 单个 H1、Title/Description、重复 ID、本地资源（含 CSS 引用）与锚点、双语互链。
-- 英文中残留的中文文本/替代文本（允许“中文”切换入口）、未替换标记、指定旧项目名。
-- 图片语言与来源清单、缺少尺寸、过长段落提醒。
+- 必有模块、采集方式、UNS 业务模型、Builder 可操作预览与 Prompt、Agent 问答/Source/结果。
+- 三个产品模块的交互根、语义控件、视觉用途声明、证据例外原因、ARIA 目标引用；拒绝用可点击图片/视频充当模型。
+- Builder 编辑器与同模块 App 的目标绑定、差异预览、应用和撤销控件；行为仍由浏览器逐项验证。
+- 服务模式两栏各三个列表项、原始固定按钮与链接；结构相同不等于像素相同。
+- Title/Description/H1、重复 ID、本地资源与 CSS 依赖、锚点、语言互链、未翻译文字和旧项目名、证据图片来源。
 
-返回码 0 表示静态硬检查通过，1 表示发现错误；报告分别列出 errors、warnings、manual_required。不得把 `static_status: pass` 说成“全部验收通过”。外链、站点根路径、实际像素、图片翻译正确性、移动端溢出、交互、业务事实和真实 UNS 查询均不由此脚本证明。浏览器不可用时保留未验证项，不绕过安全策略。
+静态返回码 0 不证明 JS 事件、真实渲染、图中语言或业务事实正确。它也无法识别所有 CSS 背景或 Canvas 内的静态 UI；报告保留 manual_required，必须逐项核对全页视觉清单。
 
-## 修改脚本后验证
+## 行为检查
 
 ```sh
 python3 /path/to/skill/scripts/test_components.py
+node /path/to/skill/scripts/test_interactions.cjs
 ```
 
-包含正常双语页面与缺模块、缺图、错语言、旧项目名、占位符、服务按钮变更、重复 ID、断锚点、CSS 依赖、字段映射缺失、注入文本、覆盖保护等正反用例。再用当前真实交付页面检查一次，修正真实遗漏或记录旧页面的迁移项。
+浏览器测试使用已安装的 Playwright/Chromium，依赖发现与实际范围见 [交互验收](interactive-demos.md#验收和交付)。它操作生成的中英模型，覆盖三个 App 视图、搜索/筛选/排序、校验失败与完成工单、分派、关联指标/活动、独立实例、UNS 与 Agent、重置、键盘/焦点、1440/1024/375px 和单 HTML 离线打开。定制图表/页面必须另做实际操作；不能把标准模板通过当成整页都已验证。
+
+Builder 还覆盖预览不改 App、编辑失效、未知需求、实际应用三种变更、版本同步、重复应用、撤销保留业务记录、新增字段的完工校验，以及带 Builder 的单文件离线运行。

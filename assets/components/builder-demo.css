@@ -1,0 +1,45 @@
+/* Paired Builder change previews, with the App as the interactive result. */
+.t0-builder-version { margin-left:auto; font:11px ui-monospace,monospace; padding:3px 7px; border:1px solid #dfe6db; border-radius:5px; color:#456332; background:#f4f8f0; }
+#builder .t0-prompt { max-width:480px; }
+@media(min-width:1150px) {
+  #builder .t0-generation { display:grid; grid-template-columns:minmax(0,1fr) 400px; gap:0; align-items:end; padding-bottom:24px; }
+  #builder .t0-result { margin-right:-22px; padding-bottom:0; }
+  #builder .t0-result>.t0-app { padding-right:22px!important; }
+  #builder .t0-prompt { width:100%; max-width:none; margin:36px 0 -24px; }
+}
+#builder .t0-app-shell { max-height:650px; overflow:auto; }
+#builder .t0-prompt h3 { margin:16px 0 8px; font-size:20px; font-weight:600; letter-spacing:-.4px; }
+#builder .t0-builder-context { font-size:11px; color:#667085; margin-bottom:14px; }
+.t0-builder-brief { font-size:12px; border-bottom:1px solid #e6e9e2; padding-bottom:12px; }
+.t0-builder-brief p { margin:8px 0!important; color:#52604c; line-height:1.7; }
+.t0-builder-presets { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0; }
+.t0-builder-presets button { font-size:11px; padding:5px 8px; border-radius:20px; background:#f6f8f3; }
+#builder .t0-prompt .t0-input { border-color:#cedcc3; background:#fbfcfa; border-radius:8px; padding:12px; }
+#builder .t0-prompt .t0-input label { font-size:11px; color:#667085; }
+#builder .t0-prompt .t0-input textarea { min-height:82px; border:0; box-shadow:none; background:transparent; padding:4px 0; font-size:14px; }
+#builder .t0-prompt .t0-input button { font-size:12px; background:#fff; }
+#builder .t0-prompt button[type=submit] { color:#fff; background:#23432c; border-color:#23432c; }
+.t0-builder-diff { margin-top:16px; border:1px solid #c7d9bc; border-radius:8px; background:#f7faf4; padding:14px; font-size:12px; }
+.t0-builder-diff>strong { font-size:13px; }
+.t0-builder-diff dl { display:grid; grid-template-columns:66px minmax(0,1fr); gap:8px; margin:12px 0 16px; line-height:1.6; }
+.t0-builder-diff dt { color:#6f7c66; }
+.t0-builder-diff dd { margin:0; }
+.t0-builder-diff dd:last-child { color:#2d5125; }
+#builder .t0-builder-primary { background:#23432c; border-color:#23432c; color:#fff; width:100%; font-size:12px; }
+.t0-builder-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.t0-builder-actions button { font-size:11px; background:#fff; }
+#builder [data-builder-status],#builder [data-copy-status] { font-size:12px; line-height:1.6; }
+.t0-prompt button:disabled { opacity:.45; cursor:default; }
+.t0-app-change { display:flex; gap:12px; justify-content:space-between; align-items:center; margin-bottom:16px; padding:9px 12px; background:#f1f7eb; border:1px solid #cee0c0; border-radius:6px; font-size:11px; color:#446a30; }
+.t0-app-change button { font-size:11px; padding:3px 7px; min-height:30px; }
+.t0-board { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.t0-board-column { min-width:0; padding:12px; background:#f5f7f4; border:1px solid #e3e8df; border-radius:8px; }
+.t0-board-column>.t0-card-heading>strong { font-size:11px; font-weight:500; color:#65775a; }
+.t0-app button.t0-board-card { display:flex; flex-direction:column; gap:8px; text-align:left; width:100%; padding:13px; margin-bottom:10px; background:#fff; white-space:normal; }
+.t0-board-card>strong { font-size:12px; line-height:1.6; font-weight:500; }
+.t0-board-card>small { font-size:10px; color:#667085; }
+.t0-downtime { padding:14px; background:#f5f9ef; border:1px solid #bed4a9; border-radius:8px; margin-bottom:20px; }
+.t0-downtime>strong { display:block; font-size:12px; margin-bottom:10px; color:#45662e; }
+.t0-downtime input { margin-top:6px; width:100%; }
+@container(max-width:480px) { .t0-board { grid-template-columns:1fr; } .t0-app-change { align-items:flex-start; flex-direction:column; } }
+@media(max-width:810px) { #builder .t0-prompt { max-width:none; width:100%; } #builder .t0-prompt .t0-input textarea { font-size:16px; } .t0-builder-presets button,.t0-builder-actions button { min-height:44px; } }

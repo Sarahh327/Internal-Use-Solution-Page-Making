@@ -1,1 +1,19 @@
-<section id="uns-agent" class="t0-module" data-component="uns-agent"><div class="t0-copy"><h2>$heading</h2><p>$intro</p></div><div class="t0-agent"><div class="t0-toolbar"><strong>$scenario</strong></div><div class="t0-tabs"><span>Chat</span><span>Card List</span></div><div class="t0-agent-body"><div class="t0-question">$question</div><p class="t0-answer">$answer</p><div class="t0-source">Source: $sources</div><div class="t0-analysis"><div class="t0-bottom"><strong>$result_title</strong><span>$result_label</span></div>$result</div></div><div class="t0-composer"><div class="t0-tabs"><span>Scheduled Tasks</span><span>Skills</span></div><label for="agent-followup">$followup_label</label><textarea id="agent-followup" rows="2">$followup</textarea><span class="t0-preview">$preview_label</span></div></div></section>
+<section id="uns-agent" class="t0-module" data-component="uns-agent">
+  <div class="t0-copy"><h2>$heading</h2><p>$intro</p></div>
+  <div class="t0-agent t0-demo" id="agent-demo" data-t0-demo="agent" data-visual="interactive">
+    <div class="t0-toolbar t0-bottom"><strong>$scenario</strong><span>$preview_label</span></div>
+    <div class="t0-tabs" role="tablist" aria-label="$tabs_label">
+      <button id="agent-chat-tab" type="button" role="tab" disabled data-demo-control aria-controls="agent-chat" aria-selected="true">Chat</button>
+      <button id="agent-cards-tab" type="button" role="tab" disabled data-demo-control aria-controls="agent-cards" aria-selected="false" tabindex="-1">Card List</button>
+    </div>
+    <div id="agent-chat" class="t0-agent-body" role="tabpanel" aria-labelledby="agent-chat-tab">$scenarios</div>
+    <div id="agent-cards" class="t0-agent-body" role="tabpanel" aria-labelledby="agent-cards-tab" tabindex="0" hidden><p data-agent-empty>$empty_label</p><div data-agent-cards></div></div>
+    <div class="t0-composer">
+      <details><summary>Skills · $example_label</summary><div class="t0-presets">$questions</div></details>
+      <details><summary>Scheduled Tasks</summary><p>$task_note</p><button type="button" disabled data-demo-control data-agent-task>$task_label</button><ul data-agent-tasks></ul></details>
+      <form data-agent-form><label for="agent-followup">$followup_label</label><textarea id="agent-followup" rows="2" required>$followup</textarea><button type="submit" disabled data-demo-control>$run_label</button></form>
+      <p role="status" data-agent-status></p>
+      <button type="button" disabled data-demo-control data-agent-reset>$reset_label</button>
+    </div>
+  </div>
+</section>
