@@ -46,7 +46,7 @@ class ComponentTests(unittest.TestCase):
     def test_translation_and_placeholder(self):
         self.mutate('<h1>EAM</h1>','<h1>设备 {{heading}}</h1>');self.assertTrue({'untranslated-text','placeholder'}<=self.codes())
     def test_service_drift(self):
-        self.mutate('Apply for Trial ↗','Free Trial');self.assertIn('delivery-cta',self.codes())
+        self.mutate('Free Trial ↗','Apply for Trial ↗');self.assertIn('delivery-cta',self.codes())
     def test_duplicate_id_and_anchor(self):
         self.mutate('</body>','<div id="builder"></div><a href="#missing">Jump</a></body>');self.assertTrue({'duplicate-id','anchor'}<=self.codes())
     def test_css_dependency(self):
@@ -121,4 +121,27 @@ class ComponentTests(unittest.TestCase):
     def test_builder_configuration_is_escaped(self):
         c=copy.deepcopy(self.config);c['builder']['changes'][0]['after']='</script><img src=x onerror=alert(1)>'
         s=render(c);self.assertNotIn('</script><img',s);self.assertIn('\\u003c/script\\u003e',s)
+    def test_chinese_cta_labels(self):
+        s=render(self.zh)
+        self.assertIn('免费试用 ↗',s);self.assertIn('联系团队 ↗',s)
+        self.assertNotIn('Apply for Trial',s);self.assertNotIn('Talk to team',s)
+    def test_static_explanation_allowed(self):
+        self.mutate('</body>','<figure data-visual="explanation"><svg role="img" aria-label="Business flow"></svg></figure></body>')
+        self.assertEqual(self.codes(),set())
+    def test_uns_factory_root(self):
+        for c in (self.zh,self.config):
+            self.assertTrue(all(not x['path'].startswith('v1/') for x in c['agent']['sources']))
+            self.assertNotIn('<summary>v1</summary>',render(c))
+    def test_legacy_prefix_hidden_but_source_preserved(self):
+        c=copy.deepcopy(self.config)
+        for source in c['agent']['sources']:source['path']='v1/'+source['path']
+        for source in c['namespace']['sources']:source['topic']='v1/'+source['topic']
+        for item in [c['agent']]+c['agent'].get('examples',[]):item['field_refs']=['v1/'+ref for ref in item['field_refs']]
+        s=render(c)
+        self.assertNotIn('<summary>v1</summary>',s)
+        self.assertIn('v1/Factory_A/State/work_orders',s)
+    def test_version_root_rejected(self):
+        p=self.p/'en.html';s=p.read_text();i=s.index('id="namespace"');j=s.index('>',i)
+        p.write_text(s[:j+1]+'<details><summary>v1</summary></details>'+s[j+1:])
+        self.assertIn('uns-root',self.codes())
 if __name__=='__main__':unittest.main()

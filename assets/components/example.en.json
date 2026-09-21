@@ -283,14 +283,14 @@
     ]
   },
   "agent": {
-    "heading": "Find open maintenance work",
-    "intro": "Analyze work order status, priority and ownership stored in UNS.",
+    "heading": "Ask AI about equipment data already in UNS",
+    "intro": "Once equipment and maintenance records are stored in UNS, ask Agent about open work, owners and related records. The conversation below uses prepared examples.",
     "scenario": "Urgent work orders",
     "question": "Which urgent work orders are still open, and who owns them?",
     "answer": "This example filters unfinished urgent work and lists the asset and owner.",
     "sources": [
       {
-        "path": "v1/Factory_A/State/work_orders",
+        "path": "Factory_A/State/work_orders",
         "fields": [
           "work_order_id",
           "equipment_id",
@@ -301,7 +301,7 @@
         ]
       },
       {
-        "path": "v1/Factory_A/State/equipment_status",
+        "path": "Factory_A/State/equipment_status",
         "fields": [
           "equipment_id",
           "state"
@@ -309,10 +309,10 @@
       }
     ],
     "field_refs": [
-      "v1/Factory_A/State/work_orders#status",
-      "v1/Factory_A/State/work_orders#priority",
-      "v1/Factory_A/State/work_orders#equipment_id",
-      "v1/Factory_A/State/work_orders#assignee"
+      "Factory_A/State/work_orders#status",
+      "Factory_A/State/work_orders#priority",
+      "Factory_A/State/work_orders#equipment_id",
+      "Factory_A/State/work_orders#assignee"
     ],
     "data_status": "illustrative",
     "result": {
@@ -342,8 +342,8 @@
         "question": "Group open work orders by workshop.",
         "answer": "Four unfinished orders remain: three in Workshop A and one in Utilities.",
         "field_refs": [
-          "v1/Factory_A/State/work_orders#status",
-          "v1/Factory_A/State/work_orders#workshop"
+          "Factory_A/State/work_orders#status",
+          "Factory_A/State/work_orders#workshop"
         ],
         "result": {
           "type": "table",
@@ -379,12 +379,12 @@
       {
         "label": "Maintenance records",
         "method": "Technicians enter work order results in the app.",
-        "topic": "v1/Factory_A/State/work_orders"
+        "topic": "Factory_A/State/work_orders"
       },
       {
         "label": "Equipment status",
         "method": "Read equipment state via the available OPC UA interface.",
-        "topic": "v1/Factory_A/State/equipment_status"
+        "topic": "Factory_A/State/equipment_status"
       }
     ]
   }

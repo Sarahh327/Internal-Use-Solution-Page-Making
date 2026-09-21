@@ -283,14 +283,14 @@
     ]
   },
   "agent": {
-    "heading": "按设备查询维护待办",
-    "intro": "基于 UNS 中的工单状态、优先级与负责人分析待办。",
+    "heading": "与 AI 对话，分析 UNS 中已有的设备数据",
+    "intro": "设备与维护记录存入 UNS 后，向 Agent 提问，了解待办、核对负责人并追问相关记录。以下使用预设示例。",
     "scenario": "紧急工单跟进",
     "question": "有哪些未完成的紧急工单，由谁处理？",
     "answer": "以下示例按紧急优先级筛选未完成工单，列出设备与负责人。",
     "sources": [
       {
-        "path": "v1/Factory_A/State/work_orders",
+        "path": "Factory_A/State/work_orders",
         "fields": [
           "work_order_id",
           "equipment_id",
@@ -301,7 +301,7 @@
         ]
       },
       {
-        "path": "v1/Factory_A/State/equipment_status",
+        "path": "Factory_A/State/equipment_status",
         "fields": [
           "equipment_id",
           "state"
@@ -309,10 +309,10 @@
       }
     ],
     "field_refs": [
-      "v1/Factory_A/State/work_orders#status",
-      "v1/Factory_A/State/work_orders#priority",
-      "v1/Factory_A/State/work_orders#equipment_id",
-      "v1/Factory_A/State/work_orders#assignee"
+      "Factory_A/State/work_orders#status",
+      "Factory_A/State/work_orders#priority",
+      "Factory_A/State/work_orders#equipment_id",
+      "Factory_A/State/work_orders#assignee"
     ],
     "data_status": "illustrative",
     "result": {
@@ -342,8 +342,8 @@
         "question": "按车间汇总未完成工单。",
         "answer": "示例共有 4 条未完成工单：A 车间 3 条，公辅区 1 条。",
         "field_refs": [
-          "v1/Factory_A/State/work_orders#status",
-          "v1/Factory_A/State/work_orders#workshop"
+          "Factory_A/State/work_orders#status",
+          "Factory_A/State/work_orders#workshop"
         ],
         "result": {
           "type": "table",
@@ -379,12 +379,12 @@
       {
         "label": "维护记录",
         "method": "维修人员通过应用表单录入工单结果。",
-        "topic": "v1/Factory_A/State/work_orders"
+        "topic": "Factory_A/State/work_orders"
       },
       {
         "label": "设备状态",
         "method": "通过设备可用的 OPC UA 接口读取运行状态。",
-        "topic": "v1/Factory_A/State/equipment_status"
+        "topic": "Factory_A/State/equipment_status"
       }
     ]
   }

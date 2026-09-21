@@ -29,7 +29,7 @@ class Document(HTMLParser):
     def handle_data(self,d):self.current.data.append(d)
 
 def audit(page,manifest=None,forbidden=()):
-    report={'page':str(page),'errors':[],'warnings':[],'manual_required':['Operate every demo: before/action/after/reset, keyboard, mobile and offline delivery','Visual inventory: every diagram or demo screenshot replaced by an interactive model; evidence exceptions reviewed','Translation of all demo states and evidence images','Business claims, UNS data sufficiency and analysis accuracy']}
+    report={'page':str(page),'errors':[],'warnings':[],'manual_required':['Operate every demo: before/action/after/reset, keyboard, mobile and offline delivery','Visual inventory: original hero screenshot, static explanations, interactive product demos; review scope and image proportions','Translation of all demo states and evidence images','Business claims, UNS data sufficiency and analysis accuracy']}
     error=lambda code,msg:report['errors'].append({'code':code,'message':msg})
     warn=lambda code,msg:report['warnings'].append({'code':code,'message':msg})
     try:raw=page.read_text()
@@ -50,7 +50,7 @@ def audit(page,manifest=None,forbidden=()):
     for n in nodes:
         if 'data-visual' in n.attrs:
             kind=n.attrs['data-visual']
-            if kind not in ('interactive','evidence','brand','decoration'):error('visual-kind','Unknown visual classification: '+kind)
+            if kind not in ('interactive','evidence','brand','decoration','explanation'):error('visual-kind','Unknown visual classification: '+kind)
             if kind=='interactive':
                 if 'data-t0-demo' not in n.attrs:error('demo-contract','Interactive visual needs a scoped data-t0-demo root')
                 if not n.attrs.get('id','').strip():error('demo-id','Interactive visual needs a unique DOM id for its verification inventory')
@@ -62,12 +62,14 @@ def audit(page,manifest=None,forbidden=()):
             while parent:
                 if 'data-visual' in parent.attrs:visual=parent.attrs['data-visual'];break
                 parent=parent.parent
-            if visual is None:error('visual-inventory','Unclassified visual; implement an interactive model or record an evidence/brand/decoration exception')
+            if visual is None:error('visual-inventory','Unclassified visual; classify as product interaction, original evidence, static explanation, brand or decoration')
             if n.tag in ('img','video') and visual=='interactive':error('static-demo','A clickable image/video is not an interactive interface model')
     if 'namespace' in ids:
         nn=list(ids['namespace'].all())
         if not any((n.cls('eam-source') or 'data-uns-source' in n.attrs) and n.text().strip() for n in nn):error('uns-acquisition','Missing readable data sources and acquisition methods')
         if not any((n.cls('uns-model') or 'data-uns-model' in n.attrs) and n.text().strip() for n in nn):error('uns-model','Missing readable UNS business object model')
+    if 'namespace' in ids:
+        if any(n.tag=='summary' and re.fullmatch(r'v\d+',n.text().strip(),re.I) for n in ids['namespace'].all()):error('uns-root','UNS tree must start with the factory, not a version prefix')
     if 'builder' in ids:
         bn=list(ids['builder'].all())
         if not any(n.attrs.get('data-t0-demo') for n in bn):error('builder-preview','Builder requires a clickable application preview')
@@ -87,7 +89,7 @@ def audit(page,manifest=None,forbidden=()):
     if 'delivery' in ids:
         dn=list(ids['delivery'].all());routes=[n for n in dn if n.cls('route')]
         if len(routes)!=2 or any(sum(n.tag=='li' for n in r.all())!=3 for r in routes):error('delivery-structure','Fixed service module requires two routes, each with three items')
-        for label,href in [('Apply for Trial ↗','https://tier0.dev/login'),('Talk to team ↗','https://tier0.app/talk-to-team')]:
+        for label,href in [(('Free Trial ↗' if lang=='en' else '免费试用 ↗'),'https://tier0.dev/login'),(('Book a Demo ↗' if lang=='en' else '联系团队 ↗'),'https://tier0.app/talk-to-team')]:
             if not any(n.tag=='a' and n.text().strip()==label and n.attrs.get('href')==href for n in dn):error('delivery-cta','Missing or altered fixed CTA: '+label)
     visible=dom.root.text()
     # Attributes count too: untranslated alt/labels are user-facing content.

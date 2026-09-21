@@ -45,6 +45,8 @@ def render(config):
         replacements.update({'自主构建，或购买':'Build it yourself, or use ','工程服务':'engineering services','团队自主构建':'Build with your team','适合愿意自己上手、希望 100% 掌控自己数字化项目的团队。':'For hands-on teams that want 100% control over their digital project.','掌握功能规划、业务流程与项目推进':'Own feature planning, workflows and project delivery','购买工程定制服务':'Purchase custom engineering services','按约定范围完成接入、定制与交付。':'Integration, customization and delivery within an agreed scope.','按约定范围完成验证与交付':'Validate and deliver within the agreed scope'})
     pattern=re.compile('|'.join(re.escape(k) for k in sorted(replacements,key=len,reverse=True)))
     service=pattern.sub(lambda m:text(replacements[m[0]]),service)
+    service=service.replace('Apply for Trial', 'Free Trial' if en else '免费试用').replace('Talk to team', 'Book a Demo' if en else '联系团队')
+    service=re.sub(r'<div class="kicker">\d+ / Delivery options</div>', '', service) # Host page assigns consecutive section labels.
     parts.append(service)
     return '\n'.join(parts)
 

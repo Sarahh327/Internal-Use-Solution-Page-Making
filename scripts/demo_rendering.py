@@ -1,5 +1,6 @@
 """Escaped, pre-rendered interactive mockups. No network or third-party packages."""
 import html
+import re
 from pathlib import Path
 from string import Template
 
@@ -56,6 +57,9 @@ def render_namespace(config, sources, lang):
         body = ''
         for label, children in nodes.items():
             path = prefix + '/' + label if prefix else label
+            if not prefix and re.fullmatch(r'v\d+',label,re.I):
+                body += branches(children,path)
+                continue
             if children:
                 body += '<details open><summary>' + text(label) + '</summary>' + branches(children, path) + '</details>'
             else:

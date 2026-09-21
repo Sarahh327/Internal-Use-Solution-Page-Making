@@ -4,7 +4,7 @@
 
 ## 四个模块
 
-每页有数据采集与 UNS（`#namespace`）、Builder（`#builder`）、UNS Agent（`#uns-agent`）和服务模式（`#delivery`）。生成器现提供四个片段；它们不包含网站导航、Hero、其他业务场景或页脚，不能当作完整页面。全页其他示意视觉也需按交互契约实现。
+每页有数据采集与 UNS（`#namespace`）、Builder（`#builder`）、UNS Agent（`#uns-agent`）和服务模式（`#delivery`）。生成器现提供四个片段；它们不包含网站导航、Hero、其他业务场景或页脚，不能当作完整页面。其他产品界面才需交互；首屏原图和普通流程说明保持静态。
 
 - [Namespace](../assets/components/namespace.html)：选择数据来源、展开业务对象与字段；按 [数据接入](data-acquisition.md) 校验业务适用性。
 - [Builder](../assets/components/builder.html) 使用 [完整 App 模型](../assets/components/app-demo.html) 作为底层预览，保留右下 Prompt；需求可预览差异并应用到 App，新增看板、优先级列或完工规则，支持版本同步与撤销。App 的详情、分派、表单校验、指标和图表随实际状态更新。
@@ -51,7 +51,7 @@ localized 证据同时记录原图 source；路径相对最终页面。没有证
 - 必有模块、采集方式、UNS 业务模型、Builder 可操作预览与 Prompt、Agent 问答/Source/结果。
 - 三个产品模块的交互根、语义控件、视觉用途声明、证据例外原因、ARIA 目标引用；拒绝用可点击图片/视频充当模型。
 - Builder 编辑器与同模块 App 的目标绑定、差异预览、应用和撤销控件；行为仍由浏览器逐项验证。
-- 服务模式两栏各三个列表项、原始固定按钮与链接；结构相同不等于像素相同。
+- 服务模式两栏各三个列表项、按页面语言统一的按钮与原始链接；结构相同不等于像素相同。
 - Title/Description/H1、重复 ID、本地资源与 CSS 依赖、锚点、语言互链、未翻译文字和旧项目名、证据图片来源。
 
 静态返回码 0 不证明 JS 事件、真实渲染、图中语言或业务事实正确。它也无法识别所有 CSS 背景或 Canvas 内的静态 UI；报告保留 manual_required，必须逐项核对全页视觉清单。
@@ -66,3 +66,6 @@ node /path/to/skill/scripts/test_interactions.cjs
 浏览器测试使用已安装的 Playwright/Chromium，依赖发现与实际范围见 [交互验收](interactive-demos.md#验收和交付)。它操作生成的中英模型，覆盖三个 App 视图、搜索/筛选/排序、校验失败与完成工单、分派、关联指标/活动、独立实例、UNS 与 Agent、重置、键盘/焦点、1440/1024/375px 和单 HTML 离线打开。定制图表/页面必须另做实际操作；不能把标准模板通过当成整页都已验证。
 
 Builder 还覆盖预览不改 App、编辑失效、未知需求、实际应用三种变更、版本同步、重复应用、撤销保留业务记录、新增字段的完工校验，以及带 Builder 的单文件离线运行。
+
+## 整页合入规则
+生成器不再写死服务模式的 05 编号。合入整页后，首屏不编号，其余正文板块从 01 连续编号，统一「编号 / 英文栏目名」。首屏原始截图为 evidence；普通静态说明为 explanation，均无需产品交互控件。Namespace 隐去历史路径的版本前缀，但保留明确提供的真实 Source 路径；新示例直接从 Factory / Plant 起始。
